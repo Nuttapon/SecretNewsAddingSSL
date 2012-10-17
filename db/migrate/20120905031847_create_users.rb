@@ -6,6 +6,5 @@ class CreateUsers < ActiveRecord::Migration
 
       t.timestamps
     end
-    User.create!(:fullname => "Admin",:password => "mefuwfhfu", :password_confirmation => "mefuwfhfu" ,:email => "admin@gmail.com", :admin => true)
   end
 end

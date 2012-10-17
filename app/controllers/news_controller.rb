@@ -1,7 +1,7 @@
 class NewsController < ApplicationController
   # GET /news
   # GET /news.json
-  before_filter :signed_in_user, only: [:create,:edit, :update, :index, :destroy , :show]
+  before_filter :signed_in_user, only: [:edit,:destroy,:new]
   before_filter :admin_user, only: [:edit,:destroy]
   
   def index
