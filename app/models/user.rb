@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :password,:password_confirmation,:admin,:email, :fullname, :last_login, :last_logout, :password_digest, :password_reset_sent_at, :password_reset_token, :remember_token
+  attr_accessible :password,:password_confirmation,:admin,:email, :fullname, :last_login, :last_logout, :password_reset_sent_at, :password_reset_token, :remember_token
   
   has_many :news, dependent: :destroy
   has_many :hotnews, dependent: :destroy
