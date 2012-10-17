@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SecretNews</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <script type="text/javascript">
+  	$(document).ready(function(){
+    	var validator = $("#new_hotnews").validate({
+    		success: "valid",
+    		rules: {
+    			"hotnews[title]": {required: true, minlength: 10},
+    			"hotnews[file]": {required: true, accept: "pdf"}
+    		},
+    		messages: {
+    			"hotnews[title]": {
+            required: "Title can't blank.",
+            minlength: "Enter at least {0} characters."},
+          "hotnews[file]": { required: "File can't blank.", accept: "File pdf only." }
+    		}
+    	});
+    	var validator = $("#new_hotnews_edit").validate({
+    		success: "valid",
+    		rules: {
+    			"hotnews[title]": {required: true, minlength: 10},
+    			"hotnews[file]": { accept: "pdf" }
+    		},
+    		messages: {
+    			"hotnews[title]": {
+            required: "Title can't blank.",
+            minlength: "Enter at least {0} characters."},
+          	"hotnews[file]": { accept: "File pdf only." }
+    		}
+    	});
+    	var validator = $("#signup_user").validate({
+    		success: "valid",
+    		rules: {
+    			"user[fullname]": {required: true },
+    			"user[email]": { required: true, email: true, remote:"/users/check_email"},
+    			"user[password]": {required: true, minlength: 6 },
+    			"user[password_confirmation]": { equalTo: "#input_password" }
+    		},
+    		messages: {
+    			"user[fullname]": { required: "Fullname can't blank." },
+          		"user[email]": { required: "Please enter a  valid email address.", remote: jQuery.format("{0} is already in use.") },
+          		"user[password]": {required: "Password can't blank." , minlength: "Minimum is {0} characters."},
+          		"user[password_confirmation]": { required: "Password confirmation can't blank.", equalTo: "No match your password."}
+    		}
+    	});
+    	var validator = $("#signup_user_edit").validate({
+    		success: "valid",
+    		rules: {
+    			"user[fullname]": {required: true },
+    			// "user[email]": { required: true, email: true, remote:"/users/check_email"},
+    			"user[password]": { minlength: 6 },
+    			"user[password_confirmation]": { equalTo: "#input_password" }
+    		},
+    		messages: {
+    			"user[fullname]": { required: "Fullname can't blank." },
+          		// "user[email]": { required: "Please enter a  valid email address.", remote: jQuery.format("{0} is already in use.") },
+          		"user[password]": { minlength: "Minimum is {0} characters."},
+          		"user[password_confirmation]": { required: "Password confirmation can't blank.", equalTo: "No match your password."}
+    		}
+    	});
+    	var validator = $("#new_organization").validate({
+    		success: "valid",
+    		rules: {
+    			"organization[name]": {required: true },
+    			"organization[logo]": {required: true, accept: "jpg|jpeg|png" }
+    		},
+    		messages: {
+    			"organization[name]": { required: "Name can't blank." },
+          		"organization[logo]": { required: "Logo can't blank.", accept: "File JPG,JPEG,PNG only." }
+    		}
+    	});
+    	var validator = $("#new_organization_edit").validate({
+    		success: "valid",
+    		rules: {
+    			"organization[name]": {required: true },
+    			"organization[logo]": {accept: "jpg|jpeg|png" }
+    		},
+    		messages: {
+    			"organization[name]": { required: "Name can't blank." },
+          		"organization[logo]": { accept: "File JPG,JPEG,PNG only." }
+    		}
+    	});
+    	var validator = $("#new_news").validate({
+    		success: "valid",
+    		rules: {
+    			"news[title]": {required: true },
+    			"news[detail]": {required: true },
+    			"news[province_id]": {required: true}
+    		},
+    		messages: {
+    			"news[title]": { required: "Title can't blank." },
+          		"news[detail]": { required: "Detail can't blank." },
+          		"news[province_id]": {required: "Province can't blank."}
+    		}
+    	});
+    	var validator = $("#new_news_edit").validate({
+    		success: "valid",
+    		rules: {
+    			"news[title]": {required: true },
+    			"news[detail]": {required: true },
+    			"news[province_id]": {required: true}
+    		},
+    		messages: {
+    			"news[title]": { required: "Title can't blank." },
+          		"news[detail]": { required: "Detail can't blank." },
+          		"news[province_id]": {required: "Province can't blank."}
+    		}
+    	});
+  });
+  </script>
+    <style type="text/css">
+  	label.error{
+  		background: url("/assets/unchecked.gif") no-repeat 0px 0px;
+  		padding-left: 17px;
+  		margin-left: 20px;
+  		font-weight: bold;
+  		color: #EA5200;
+  		display: inline;
+  	}
+  	label.valid {
+  		background: url("/assets/checked.gif") no-repeat 0px 0px;
+  		color: black;
+  		padding-left: 17px;
+  	}
+  </style>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render 'layouts/header' %>
+	<div class="container">
+	      <% flash.each do |key, value| %>
+	        <div class="alert alert-<%= key %>"><%= value %></div>
+	      <% end %>
+	<%= yield %>
+	</div>
+<footer class="container">
+<p>&copy; Code App 2012</p>
+</footer
+</body>
+</html>

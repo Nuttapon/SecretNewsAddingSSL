@@ -1,0 +1,202 @@
+@import "twitter/bootstrap/bootstrap";
+
+body { 
+	padding-top: 60px;
+}
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not 
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
+@fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
+@fontAwesomeTtfPath: '/assets/fontawesome-webfont.ttf';
+@fontAwesomeSvgPath: '/assets/fontawesome-webfont.svg';
+
+// Font Awesome
+@import "fontawesome";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/less.html for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+input.span0, textarea.span0, .uneditable-input.span0 {
+	width: 399px;
+}
+#button-create {
+  color: white;
+}
+
+.hero-unit {
+	background: #F6F6F6 url('css/darkgrain.png');
+	margin-bottom: 15px;
+	padding: 35px 50px 30px 50px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #E4E4E4;
+	margin-top: 20px;
+}
+
+.preview-image {
+	margin-left: 160px;
+	display: block;
+}
+
+.form-horizontal .help-block {
+	margin-top: -5px;
+	margin-bottom: 0;
+	font-size: 12px;
+}
+
+
+.remove_nested_fields {
+	float: right;
+	margin-right: 670px;
+	margin-top: -40px;
+	font-size: 12px;
+	color: #969696;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #DADADA;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+div.dataTables_length select {
+	width: 75px;
+	margin-top: 5px;
+}
+
+
+.breadcrumb.titlebar {
+	margin-top: -59px;
+	text-align: center;
+	margin-left: -10px;
+}
+
+.fill-form {
+	padding-top: 5px;
+}
+
+
+#notice {
+  color: green; }
+
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff; }
+  ul li {
+    font-size: 12px;
+    list-style: square; } }
+
+div.dataTables_length label {
+	float: left;
+	text-align: left;
+}
+
+div.dataTables_length select {
+	width: 75px;
+}
+
+div.dataTables_filter label {
+	float: right;
+}
+
+div.dataTables_info {
+	padding-top: 8px;
+}
+
+div.dataTables_paginate {
+	float: right;
+	margin: 0;
+}
+
+table.table {
+	clear: both;
+	margin-bottom: 6px !important;
+}
+
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+	cursor: pointer;
+	*cursor: hand;
+}
+
+table.table thead .sorting { background: url('images/sort_both.png') no-repeat center right; }
+table.table thead .sorting_asc { background: url('images/sort_asc.png') no-repeat center right; }
+table.table thead .sorting_desc { background: url('images/sort_desc.png') no-repeat center right; }
+
+table.table thead .sorting_asc_disabled { background: url('images/sort_asc_disabled.png') no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url('images/sort_desc_disabled.png') no-repeat center right; }
+
+table.dataTable th:active {
+	outline: none;
+}
+
+.add_nested_fields {
+	font-size: 15px;
+	margin-left: 160px;
+	background-color: #3BB3E0;
+	padding: 5px;
+	position: relative;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	color: white;
+	border: solid 1px #186F8F;
+	background-image: linear-gradient(bottom, #2CA0CA 0%, #3EB8E5 100%);
+	background-image: -o-linear-gradient(bottom, #2CA0CA 0%, #3EB8E5 100%);
+	background-image: -moz-linear-gradient(bottom, #2CA0CA 0%, #3EB8E5 100%);
+	background-image: -webkit-linear-gradient(bottom, #2CA0CA 0%, #3EB8E5 100%);
+	background-image: -ms-linear-gradient(bottom, #2CA0CA 0%, #3EB8E5 100%);
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #2CA0CA), color-stop(1, #3EB8E5) );
+	-webkit-box-shadow: inset 0px 1px 0px #7FD2F1, 0px 1px 0px white;
+	-moz-box-shadow: inset 0px 1px 0px #7fd2f1, 0px 1px 0px #fff;
+	box-shadow: inset 0px 1px 0px #7FD2F1, 0px 1px 0px white;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+}

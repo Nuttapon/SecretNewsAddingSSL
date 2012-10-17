@@ -1,0 +1,9 @@
+<div class="page-header">
+  <h1>Detail of Hotnews <small>show detail</small></h1>
+</div>
+<blockquote><p>Title : <%= @hotnews.title %></p></blockquote>
+<blockquote><p>File : <%= link_to @hotnews.file_file_name,@hotnews.file.url %></p></blockquote>
+<div class="form-actions">
+<%= link_to 'Edit', edit_hotnews_path(@hotnews) %> |
+<%= link_to 'Back', hotnews_index_path %>
+</div>

@@ -1,0 +1,32 @@
+<div class="page-header">
+  <a href="users/new" class="btn btn-primary pull-right" id="button-create"><i class="icon-white icon-plus"></i> Create User</a>
+  <h1>All User<small></small></h1>
+</div>
+<table class="display" id="datatables-user">
+  <thead>
+  <tr>
+    <th>Fullname</th>
+    <th>Email</th>
+    <th>Admin</th>
+    <th>Created at</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+    <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.fullname %></td>
+      <td><%= user.email %></td>
+      <td><%= user.admin %></td>
+      <td><%= user.created_at.strftime("%d %B %Y") %></td>
+      <td><a href="/users/<%= user.id %>" class="btn btn-info" id="button-create"><i class="icon-white icon-zoom-in"></i></a>
+      <a href="<%= edit_user_path(user) %>" class="btn btn-primary" id="button-create"><i class="icon-white icon-edit"></i></a>
+       <a href="/users/<%= user.id %>" data-confirm="Are you sure?" data-method="delete" class="btn btn-danger" id="button-create" alt="Delete"><i class="icon-white icon-trash"></i></a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br />
+
+

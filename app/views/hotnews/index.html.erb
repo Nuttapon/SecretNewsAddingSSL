@@ -1,0 +1,31 @@
+<div class="page-header">
+  <% if can? :create, @hotnews %>
+   <a href="hotnews/new" class="btn btn-primary pull-right" id="button-create"><i class="icon-white icon-plus"></i> Create Hotnews</a>
+  <% end %>
+  <h1>All Hotnews<small></small></h1>
+
+</div>
+<table class="display" id="hotnewss">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>File</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+    <tbody>
+  <% @hotnews.each do |hotnews| %>
+    <tr>
+      <td><%= hotnews.id %></td>
+      <td><%= link_to hotnews.title,hotnews_path(hotnews) %></td>
+      <td><%= link_to hotnews.file_file_name, hotnews.file.url %></td>
+      <td><a href="/hotnews/<%= hotnews.id %>" class="btn btn-info" id="button-create"><i class="icon-white icon-zoom-in"></i></a>
+      <a href="<%= edit_hotnews_path(hotnews) %>" class="btn btn-primary" id="button-create"><i class="icon-white icon-edit"></i></a>
+       <a href="/hotnews/<%= hotnews.id %>" data-confirm="Are you sure?" data-method="delete" class="btn btn-danger" id="button-create" alt="Delete"><i class="icon-white icon-trash"></i></a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br />

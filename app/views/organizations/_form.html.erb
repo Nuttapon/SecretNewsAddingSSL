@@ -1,0 +1,11 @@
+<div class="fill-form">
+<%= simple_form_for(@organization, :html => { :class => 'form-horizontal', :multipart => true, :id => "new_organization" }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name,:required => false, :input_html => { :class => "span5"} %>
+  <%= f.input :logo, :hint => "File JPG JPEG PNG only.", :input_html => { :id => "file-input"}  %>
+  <div class="preview-image"><div id="result"><p></p></div></div>
+  <div class="form-actions">
+    <input type="submit" class="btn btn-primary" value="Create"/>&nbsp;&nbsp;&nbsp;<a href="/organizations" class="btn btn-danger" id="button-create">Cancel</a>
+  </div>
+</div>
+<% end %>

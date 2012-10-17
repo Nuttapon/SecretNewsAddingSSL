@@ -1,0 +1,94 @@
+.btn-custom {
+  background-color: hsl(202, 87%, 43%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#28a6f0", endColorstr="#0e87cd");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#28a6f0), to(#0e87cd));
+  background-image: -moz-linear-gradient(top, #28a6f0, #0e87cd);
+  background-image: -ms-linear-gradient(top, #28a6f0, #0e87cd);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #28a6f0), color-stop(100%, #0e87cd));
+  background-image: -webkit-linear-gradient(top, #28a6f0, #0e87cd);
+  background-image: -o-linear-gradient(top, #28a6f0, #0e87cd);
+  background-image: linear-gradient(#28a6f0, #0e87cd);
+  border-color: #0e87cd #0e87cd hsl(202, 87%, 40%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.19);
+  -webkit-font-smoothing: antialiased;
+}
+
+.section {
+	background-color: white;
+	border: 1px solid #CCC;
+	border-radius: 4px;
+	margin-bottom: 18px;
+}
+
+.section-header {
+	background-color: #F6F6F6;
+	background-image: -webkit-linear-gradient(top, white, #DFDFDF);
+	border-top: 1px solid white;
+	border-bottom: 1px solid #DFDFDF;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	height: 49px;
+	padding: 0 15px 0;
+}
+
+.section-header h3, .section-header h5 {
+	color: #555;
+	float: left;
+	line-height: 46px;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 0 white;
+}
+
+.section-header ul {
+	margin: 0;
+	padding: 4px;
+	border: 0;
+	float: right;
+	line-height: 40px;
+	font-size: 10px;
+	text-shadow: 1px 1px 0 white;
+	text-transform: uppercase;
+}
+
+.section-header ul a {
+	text-decoration: none;
+	color: #000;
+	outline: none;
+}
+
+.section-body {
+	padding: 18px 20px 0;
+}
+
+.form-actions {
+	padding: 17px 20px 18px;
+	margin-top: 18px;
+	margin-bottom: 18px;
+	background-color: whiteSmoke;
+	border-top: 1px solid #DDD;
+}
+
+.forgotpassword {
+	font-size: 11px;
+}
+
+.logo {
+	text-align: center;
+	margin-top: -20px;
+}
+
+label {
+	color: #454545;
+}
+
+body a:hover { 
+  background-color: transparent;
+  color: #08c;
+  text-decoration:  none;
+}
+
+body a:visited {
+	color: #008EE8;
+}

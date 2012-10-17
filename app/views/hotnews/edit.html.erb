@@ -1,0 +1,15 @@
+<div class="hero-unit">
+<div class="breadcrumb titlebar span3"><h3>EDIT HOT NEWS</h3></div>
+<div class="fill-form">
+<%= simple_form_for(@hotnews, :html => { :class => 'form-horizontal', :multipart => true , :id => "new_hotnews_edit"}) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :title,:required => false, :input_html => { :class => "span5"} %>
+  <%= f.input :file, :hint => "File pdf only."%>
+  <div class="form-actions">
+    <input type="submit" class="btn btn-primary" value="Update"/>&nbsp;&nbsp;&nbsp;<a href="/hotnews" class="btn btn-danger" id="button-create">Cancel</a>
+  </div>
+</div>
+<% end %>
+
+</div>

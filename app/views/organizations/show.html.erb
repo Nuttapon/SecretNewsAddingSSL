@@ -1,0 +1,9 @@
+<div class="page-header">
+  <h1>Detail of Organization <small>show detail</small></h1>
+</div>
+<blockquote><p>Name : <%= @organization.name %></p></blockquote>
+<blockquote><p>Logo : <%= link_to image_tag(@organization.logo.url(:small)), @organization.logo.url , :class => "colorbox", :title => "#{ @organization.name }"%></p></blockquote>
+<div class="form-actions">
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>
+</div>

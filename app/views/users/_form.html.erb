@@ -1,0 +1,17 @@
+<div class="fill-form">
+<%= simple_form_for(@user, :html => { :class => 'form-horizontal', :multipart => true , :id => "signup_user"}) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :fullname, :required => false, :input_html => { :class => "span4"} %>
+  <%= f.input :email, :required => false, :input_html => { :class => "span4"} %>
+  <%= f.input :password ,:required => false , :input_html => { :id => "input_password" } %>
+  <%= f.input :password_confirmation,:required => false %>
+  <% if signed_in? %>
+  <% if current_user.admin? %>
+  <%= f.input :admin %>
+  <% end %>
+  <% end %>
+  <div class="form-actions">
+    <input type="submit" class="btn btn-primary" value="Create"/>&nbsp;&nbsp;&nbsp;<a href="/users" class="btn btn-danger" id="button-create">Cancel</a>
+  </div>
+</div>
+<% end %>

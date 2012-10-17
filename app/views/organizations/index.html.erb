@@ -1,0 +1,26 @@
+
+<div class="page-header">
+  <a href="organizations/new" class="btn btn-primary pull-right" id="button-create"><i class="icon-white icon-plus"></i> Create Organization</a>
+  <h1>Organization<small></small></h1>
+</div>
+<table class="table table-striped" cellpadding="0" cellspacing="0" border="0">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Logo</th>
+    <th></th>
+  </tr>
+</thead>
+<% @organizations.each do |organization| %>
+  <tr>
+    <td><%= organization.name %></td>
+    <td><%= link_to image_tag(organization.logo.url(:small)), organization.logo.url , :class => "colorbox", :title => "#{ organization.name }"%></td>
+    <td width="15%"><a href="/organizations/<%= organization.id %>" class="btn btn-info" id="button-create"><i class="icon-white icon-zoom-in"></i></a>
+      <a href="<%= edit_organization_path(organization) %>" class="btn btn-primary" id="button-create"><i class="icon-white icon-edit"></i></a>
+       <a href="/organizations/<%= organization.id %>" data-confirm="Are you sure?" data-method="delete" class="btn btn-danger" id="button-create" alt="Delete"><i class="icon-white icon-trash"></i></a></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

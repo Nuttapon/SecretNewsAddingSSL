@@ -1,0 +1,21 @@
+<div class="fill-form">
+<%= simple_nested_form_for(@news, :html => { :multipart => true,:class => 'form-horizontal', :id => "new_news" }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :title ,:required => false, :input_html => { :class => "span5"}%>
+    <%= f.input :detail,:required => false, :input_html => { :class => "span5"} %>
+    <%= f.input :tag_tokens,:label => "Tag", :input_html => {:class => "span5 tag_token", data: {load: @news.tags}}  %>
+    <%= f.association :province, :collection => Province.all(:order => "province"), :label_method => lambda { |p| "#{p.province}" }, :prompt => "Select your province",:required => false, :input_html => { :class => "span2"} %>
+
+    <%= f.fields_for :attachfiles do |builder| %>
+    <div class="form-attachfile">
+      <%= builder.input :file , :input_html => {:class => "form-inline", :id => "new_file"} %>
+      <%= builder.link_to_remove "Remove" %>
+      </div>
+    <% end %>
+    <%= f.link_to_add "+ Add File", :attachfiles %>
+
+  <div class="form-actions">
+    <input type="submit" class="btn btn-primary" value="Create"/>&nbsp;&nbsp;&nbsp;<a href="/news" class="btn btn-danger" id="button-create">Cancel</a>
+  </div>
+<% end %>
+</div>

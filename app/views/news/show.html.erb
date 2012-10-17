@@ -1,0 +1,51 @@
+<div class="page-header">
+  <h1>Details of News <small>show detail</small></h1>
+</div>
+<blockquote><p>Title : <%= @news.title %></p></blockquote>
+<blockquote><p>Detail : <%= @news.detail %></p></blockquote>
+<blockquote><p>Province : <%= @news.province.province %></p></blockquote>
+<blockquote><p>Tag : <i class="icon-tags"></i> 
+  <%= raw @news.tag_list.split(',').map {|t| link_to t,tags_tag_name_path(:name => t) }.join(', ')%>
+    </p></blockquote>
+<blockquote><p>Created_at : <%= time_ago_in_words(@news.created_at) %></p></blockquote>
+<blockquote><p>Updated_at : <%= time_ago_in_words(@news.updated_at) %></p></blockquote>
+<blockquote><p>File :<% unless @news.attachfiles.empty? %>
+            <% @news.attachfiles.each do |attach| %>
+            <% if attach.file_content_type.split("/").first == "image" %>
+              <%= link_to image_tag(attach.file.url, :height => '50', :width => '50'),attach.file.url, :class => "colorbox", :title => "#{attach.file_file_name}" %>&nbsp;
+              <% else %>
+              <%= link_to image_tag('pdf-icon.png', :height => '50', :width => '50'),attach.file.url %>
+              <% end %>
+            <% end %>
+          <% else %>
+          <% end %>
+</p></blockquote>
+<div class="form-actions">
+<%= link_to 'Edit', edit_news_path(@news) %> |
+<%= link_to 'Back', news_index_path %>
+</div>
+
+<div class="page-header">
+  <h1>Check Read <small>who read or unread</small></h1>
+</div>
+
+<table class="display" id="datatables-checkread">
+  <thead>
+  <tr>
+    <th>Read</th>
+    <th>Unread</th>
+  </tr>
+  </thead>
+    <tbody>
+    <tr>
+      <td><% @reads.each do |read| %><%= read.user.fullname %><% end %></td>
+      <td><% @unreads.each do |unread| %><%= unread.fullname %><% end %></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th><input type="text" name="search_read" value="Search read" class="search_init" id="search-custom"/></th>
+      <th><input type="text" name="search_unread" value="Search unread" class="search_init" id="search-custom"/></th>
+    </tr>
+  </tfoot>
+</table>

@@ -1,0 +1,15 @@
+<div class="hero-unit">
+<div class="breadcrumb titlebar span3"><h2>Reset Password</h2></div>
+<br>
+<fieldset>
+	
+    <%= form_tag password_resets_path, :method => :post do %>
+      <%= label_tag :email %>
+      <div class="form-inline">
+      <%= text_field_tag :email, params[:email], class: "span4" %>
+      <%= submit_tag "Reset", class: "btn btn-primary" %>
+  		</div>
+    <% end %>
+	
+<fieldset>
+</div>

@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1>Details of Profile <small>show detail</small></h1>
+</div>
+<blockquote><p>Title : <%= @user.fullname %></p></blockquote>
+<blockquote><p>Email : <%= @user.email %></p></blockquote>
+<blockquote><p>Admin : <%= @user.admin %></p></blockquote>
+<blockquote><p>Created at : <%= time_ago_in_words(@user.created_at) %></p></blockquote>
+<blockquote><p>Updated at : <%= time_ago_in_words(@user.updated_at) %></p></blockquote>
+<div class="form-actions">
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+</div>
