@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+ app = APN::App.new   
+ app.apn_dev_cert = Rails.root.join('config', 'apple_push_notification_development.pem').read
+ app.apn_prod_cert = Rails.root.join('config', 'apple_push_notification_production.pem').read
+ app.save!
+
+
+ g = APN::Group.new
+ g.name = "NIA"
+ g.app_id = 1
+ g.save

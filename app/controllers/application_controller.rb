@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
   include SessionsHelper
 
@@ -14,4 +15,13 @@ class ApplicationController < ActionController::Base
   		false
   	end
   end
+
+  def admin_user
+    if current_user.admin?
+      else
+        flash[:warning] = t('flash.admin')
+        redirect_to root_path
+    end
+  end
+
 end

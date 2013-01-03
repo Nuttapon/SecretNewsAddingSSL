@@ -1,15 +1,20 @@
 <div class="page-header">
-  <a href="users/new" class="btn btn-primary pull-right" id="button-create"><i class="icon-white icon-plus"></i> Create User</a>
-  <h1>All User<small></small></h1>
+  <% if can? :create, @users %>
+   <div class="button-right"><a href="users/new" class="btn btn" id="button-create"><i class="icon-white icon-plus-sign"></i> สร้างสมาชิก</a> </div>
+  <% end %>
+  <div class="alert alert-info header">
+  <h1>สมาชิก<small></small></h1>
+  </div>
 </div>
-<table class="display" id="datatables-user">
+<table class="display" id="datatables-users">
   <thead>
   <tr>
-    <th>Fullname</th>
-    <th>Email</th>
-    <th>Admin</th>
-    <th>Created at</th>
-    <th>Action</th>
+    <th>ชื่อเต็ม</th>
+    <th>อีเมล์</th>
+    <th>อนุมัติ</th>
+    <th>สถานะ</th>
+    <th>เริ่มใช้งาน</th>
+    <th></th>
   </tr>
   </thead>
     <tbody>
@@ -17,16 +22,22 @@
     <tr>
       <td><%= user.fullname %></td>
       <td><%= user.email %></td>
-      <td><%= user.admin %></td>
-      <td><%= user.created_at.strftime("%d %B %Y") %></td>
-      <td><a href="/users/<%= user.id %>" class="btn btn-info" id="button-create"><i class="icon-white icon-zoom-in"></i></a>
-      <a href="<%= edit_user_path(user) %>" class="btn btn-primary" id="button-create"><i class="icon-white icon-edit"></i></a>
-       <a href="/users/<%= user.id %>" data-confirm="Are you sure?" data-method="delete" class="btn btn-danger" id="button-create" alt="Delete"><i class="icon-white icon-trash"></i></a></td>
+      <td>
+      <% if user.approve == true %>
+      <span class="label label-success">อนุมัติแล้ว</span>
+      <% else %>
+      <span class="label label-warning">ยังไม่ได้อนุมัติ</span>
+      <% end %>
+       </td>
+      <td width = "9%"><% if user.admin == true %><span class="label label-important">ผู้ดูแลระบบ</span><% else %><span class="label label-info">สมาชิกทั่วไป</span><% end %></td>
+      <td width = "18%"><%= I18n.l(user.created_at, format: :long) %></td>
+      <td width = "12%"><a href="/users/<%= user.id %>" >แสดง</a>
+      <a href="<%= edit_user_path(user) %>">แก้ไข</a>
+       <a href="/users/<%= user.id %>" data-confirm="ยืนยันหรือไม่ ?" data-method="delete" alt="Delete">ลบ</a></td>
     </tr>
   <% end %>
   </tbody>
 </table>
-
 <br />
 
 

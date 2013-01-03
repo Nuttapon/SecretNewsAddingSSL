@@ -2,7 +2,7 @@ class Organization < ActiveRecord::Base
   
   attr_accessible :name, :logo
   validates :name, presence: true
-  has_attached_file :logo, :styles => { :small => "150x50>" },  #:feed => "70x50" ,
+  has_attached_file :logo, :styles => { :small => "150x50>" ,:medium => "450x150>" },  #:feed => "70x50" ,
                   :url  => "/assets/attachfiles/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/attachfiles/:id/:style/:basename.:extension"
 

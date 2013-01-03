@@ -1,0 +1,2 @@
+module HotnewsReadsHelper
+end

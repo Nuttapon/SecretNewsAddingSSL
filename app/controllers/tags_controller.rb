@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  force_ssl
   # GET /tags
   # GET /tags.json
   def index

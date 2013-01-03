@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  force_ssl
   # GET /users
   # GET /users.json
   before_filter :signed_in_user, only: [:edit, :update, :index, :destroy]
@@ -14,6 +15,10 @@ class UsersController < ApplicationController
 
   end
 
+  def disable
+    
+  end
+  
   def activate
       if request.get?
         user = User.find_by_confirm_token(params[:confirm_token])
@@ -93,7 +98,7 @@ end
       if @user.save
         #UserMailer.activate(@user).deliver
         #flash[:success] = "Welcome to My Twitter"
-        format.html { redirect_to signin_path, notice: "Thanks for signing up" }
+        format.html { redirect_to signin_path, notice: t("flash.signup") }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -109,13 +114,13 @@ end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:success] = "Profile updated"
+        flash[:notice] = t("flash.save")
         if current_user.admin?
           sign_in User.find(current_user.id)
         else
           sign_in @user
         end
-        format.html { redirect_to root_path }
+        format.html { redirect_to users_path }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -128,7 +133,7 @@ end
   # DELETE /users/1.json
   def destroy
     User.find(params[:id]).destroy    
-    flash[:success] = "User destroyed." 
+    flash[:notice] = t("flash.delete")
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
@@ -151,14 +156,6 @@ end
         format.html { redirect_to users_path }
         format.json { render :text => 'Only Admin Or Only correct user.' }
       end
-    end
-  end
-  
-  def admin_user
-    if current_user.admin?
-      else
-        flash[:warning] = 'Only Admin'
-        redirect_to(root_path) unless current_user.admin?
     end
   end
   

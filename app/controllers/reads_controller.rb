@@ -1,4 +1,5 @@
 class ReadsController < ApplicationController
+  force_ssl
   # GET /reads
   # GET /reads.json
   def index

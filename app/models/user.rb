@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
-  attr_accessible :password,:password_confirmation,:admin,:email, :fullname, :last_login, :last_logout, :password_digest, :password_reset_sent_at, :password_reset_token, :remember_token
-  
+  attr_accessible :password,:password_confirmation,:admin,:email, :fullname, :last_login, :last_logout, :password_digest, :password_reset_sent_at, :password_reset_token, :remember_token, :approve
+  has_one :apn_device,  :class_name => 'APN::Device', :dependent => :destroy
   has_many :news, dependent: :destroy
   has_many :hotnews, dependent: :destroy
+  has_many :reads, :dependent => :destroy
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
@@ -25,6 +26,13 @@ class User < ActiveRecord::Base
   #     return false
   #   end
   # end
+
+  def reset_password
+    new_password = SecureRandom.hex(5)
+    update_attributes!(:password => new_password )
+    return new_password
+  end
+
 
   def self.random_string(len)
     chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a

@@ -1,13 +1,13 @@
 
-
 /*
  * Table
  */
 table.dataTable {
 	margin: 0 auto;
 	clear: both;
-	width: 100%;
 	border-collapse: collapse;
+	border-right: 1px solid #F3F3F3;
+	width: 100%;
 }
 
 table.dataTable thead th {
@@ -32,10 +32,10 @@ table.dataTable td.dataTables_empty {
 table.dataTable tr.odd { background-color: #F3F3F3; }
 table.dataTable tr.even { background-color: white; }
 
-table.dataTable tr.odd td.sorting_1 { background-color: #D3D6FF; }
+table.dataTable tr.odd td.sorting_1 { background-color: #D6F0F5; }
 table.dataTable tr.odd td.sorting_2 { background-color: #DADCFF; }
 table.dataTable tr.odd td.sorting_3 { background-color: #E0E2FF; }
-table.dataTable tr.even td.sorting_1 { background-color: #EAEBFF; }
+table.dataTable tr.even td.sorting_1 { background-color: #F4FEFF; }
 table.dataTable tr.even td.sorting_2 { background-color: #F2F3FF; }
 table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 
@@ -46,6 +46,9 @@ table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 .dataTables_wrapper {
 	position: relative;
 	clear: both;
+	box-shadow: 0 0 30px rgba(0, 0, 0, .05);
+	width: 99%;
+	margin-top: -7px;
 	*zoom: 1;
 }
 .dataTables_wrapper .ui-widget-header {
@@ -237,6 +240,8 @@ table.dataTable th:active {
  */
 .dataTables_scroll {
 	clear: both;
+	background: white;
+	border: 1px solid #F0F0F0;
 }
 
 .dataTables_scrollBody {

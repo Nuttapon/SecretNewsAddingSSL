@@ -11,8 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require datatable
 //= require jquery_ujs
-//= require jquery-ui-1.8.23.custom.min
 //= require jquery.tokeninput
 //= require twitter/bootstrap
 //= require jquery.colorbox

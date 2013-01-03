@@ -1,5 +1,7 @@
 <div class="page-header">
-  <h1>Listing News of <%= params[:name] %><small></small></h1>
+  <div class="alert alert-info header">
+  <h1><%= params[:name] %><small></small></h1>
+  </div>
 </div>
 <table class="display" id="tagging">
   <thead>
@@ -17,23 +19,23 @@
 <% @news.each do |news| %>
   <tr>
     <td><%= link_to truncate(news.title, :length => 30),news_path(news) %></td>
-    <td><%= truncate(news.detail, :length => 40 )%></td>
-    <td><%= news.province.province %></td>
-    <td><% unless news.attachfiles.empty? %>
+    <td><%= truncate(news.detail, :length => 60 )%></td>
+    <td><%= news.province %></td>
+    <td  width = "18%"><% unless news.attachfiles.empty? %>
             <% news.attachfiles.each do |attach| %>
             <% if attach.file_content_type.split("/").first == "image" %>
-              <%= link_to image_tag(attach.file.url, :height => '50', :width => '50'),attach.file.url, :class => "colorbox", :title => "#{attach.file_file_name}" %>&nbsp;
+              <%= link_to image_tag(attach.file.url, :height => '30', :width => '30'),attach.file.url, :class => "colorbox", :title => "#{attach.file_file_name}" %>&nbsp;
             <% else %>
-            <%= link_to image_tag('pdf-icon.png', :height => '50', :width => '50'),attach.file.url %>
+            <%= link_to image_tag('pdf-icon.png', :height => '30', :width => '30'),attach.file.url %>
             <% end %>
             <% end %>
           <% else %>
           <% end %>
     </td>
-    <td><%= news.created_at.strftime("%d %B %Y") %></td>
-    <td><a href="/news/<%= news.id %>" class="btn btn-info" id="button-create"><i class="icon-white icon-zoom-in"></i></a>
-      <a href="<%= edit_news_path(news) %>" class="btn btn-primary" id="button-create"><i class="icon-white icon-edit"></i></a>
-       <a href="/news/<%= news.id %>" data-confirm="Are you sure?" data-method="delete" class="btn btn-danger" id="button-create" alt="Delete"><i class="icon-white icon-trash"></i></a></td>
+   <td  width = "8%"><%= news.created_at.strftime("%d/%m/%Y") %></td>
+    <td><a href="/news/<%= news.id %>">แสดง</a>
+      <a href="<%= edit_news_path(news) %>" >แก้ไข</a>
+       <a href="/news/<%= news.id %>" data-confirm="Are you sure?" data-method="delete" alt="Delete">ลบ</a></td>
   </tr>
 <% end %>
 </tbody>

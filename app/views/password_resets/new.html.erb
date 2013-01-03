@@ -1,15 +1,21 @@
-<div class="hero-unit">
-<div class="breadcrumb titlebar span3"><h2>Reset Password</h2></div>
+  <div class="page-header">
+  <div class="alert alert-info header">
+  <h1>ลืมรหัสผ่าน<small></small></h1>
+  </div>
+</div>
+<div class="hero-unit forget">
+<div class="breadcrumb titlebar span2"><h3>รีเซ็ตพาสเวิร์ด</h3></div>
+<div class="fill-form input_form">
 <br>
 <fieldset>
-	
-    <%= form_tag password_resets_path, :method => :post do %>
+    <%= form_tag password_resets_path, :method => :post , :class => "forget-form" do %>
       <%= label_tag :email %>
       <div class="form-inline">
       <%= text_field_tag :email, params[:email], class: "span4" %>
-      <%= submit_tag "Reset", class: "btn btn-primary" %>
+      <%= submit_tag "ยืนยัน", class: "btn btn-primary" %>
   		</div>
     <% end %>
 	
 <fieldset>
+</div>
 </div>

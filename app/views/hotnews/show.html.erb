@@ -1,9 +1,74 @@
 <div class="page-header">
-  <h1>Detail of Hotnews <small>show detail</small></h1>
+  <h1>รายละเอียดข่าวด่วน</h1>
 </div>
-<blockquote><p>Title : <%= @hotnews.title %></p></blockquote>
-<blockquote><p>File : <%= link_to @hotnews.file_file_name,@hotnews.file.url %></p></blockquote>
-<div class="form-actions">
-<%= link_to 'Edit', edit_hotnews_path(@hotnews) %> |
-<%= link_to 'Back', hotnews_index_path %>
+<div class="bg-organ">
+<blockquote><p>หัวข้อข่าว : <%= @hotnews.title %></p></blockquote>
+<blockquote><p>ไฟล์แนบ :<% unless @hotnews.attachfile_hotnews.empty? %>
+            <% @hotnews.attachfile_hotnews.each do |attach| %>
+            <% if attach.file_hotnews_content_type.split("/").first == "image" %>
+              <%= link_to image_tag(attach.file_hotnews.url, :height => '50', :width => '50'),attach.file_hotnews.url, :class => "colorbox", :title => "#{attach.file_hotnews_file_name}" , :rel => "tooltip"%>&nbsp;
+              <% elsif attach.file_hotnews_content_type.split("/").first == "video"%>
+              <a href="<%= attach.file_hotnews.url %>" rel="tooltip" title="<%= attach.file_hotnews_file_name %>"><%= image_tag('file-video.png', :height => '50', :width => '50')%></a>&nbsp;
+              <% else %>
+              <a href="<%= attach.file_hotnews.url %>" rel="tooltip" title="<%= attach.file_hotnews_file_name %>"><%= image_tag('pdf-icon.png', :height => '50', :width => '50')%></a>
+              <% end %>
+            <% end %>
+          <% else %>
+          <% end %>
+</p></blockquote>
+<blockquote><p>วันเวลาที่สร้าง : <%= I18n.l(@hotnews.created_at, format: :long) %></p></blockquote>
+<blockquote><p>คำแนะนำ : <%= @hotnews.comments[0].comment %></p></blockquote>
 </div>
+<div class="form-actions bottom">
+<%= link_to 'แก้ไข', edit_hotnews_path(@hotnews) %> |
+<%= link_to 'กลับ', hotnews_index_path %>
+</div>
+
+<div class="page-header">
+  <h1>ตรวจสอบการอ่าน <!-- <small>who read or unread</small> --></h1>
+</div>
+<div class="row">
+<div class="span5">
+<table class="display" id="datatables-checkreads">
+  <thead>
+  <tr>
+    <th>อ่านแล้ว</th>
+  </tr>
+  </thead>
+    <tbody>
+      <% @reads.each do |read| %>
+    <tr>
+      <td><%= read.user.fullname %></td>
+    </tr>
+    <% end %>
+  </tbody>
+<!--   <tfoot>
+    <tr>
+      <th><input type="text" name="search_read" value="Search read" class="search_init" id="search-custom"/></th>
+    </tr>
+  </tfoot> -->
+</table>
+</div>
+<div class="span5">
+<table class="display" id="datatables-checkunreads">
+  <thead>
+  <tr>
+    <th>ยังไม่อ่าน</th>
+  </tr>
+  </thead>
+    <tbody>
+      <% @unreads.each do |unread| %>
+    <tr>
+      <td><%= unread.fullname %></td>
+    </tr>
+    <% end %>
+  </tbody>
+<!--   <tfoot>
+    <tr>
+     <th><input type="text" name="search_unread" value="Search unread" class="search_unread" id="search-custom"/></th>
+    </tr>
+  </tfoot> -->
+</table>
+</div>
+</div>
+<br>

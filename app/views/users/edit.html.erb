@@ -1,19 +1,20 @@
 <div class="hero-unit">
-<div class="breadcrumb titlebar span3"><h3>EDIT USER</h3></div>
-<div class="fill-form">
+<div class="breadcrumb titlebar span2"><h3>แก้ไขข้อมูลสมาชิก</h3></div>
+<div class="fill-form input_form">
 <%= simple_form_for(@user, :html => { :class => 'form-horizontal', :multipart => true , :id => "signup_user_edit"}) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :fullname, :required => false, :input_html => { :class => "span4"} %>
-  <%= f.input :email, :required => false, :disabled => true, :hint => 'You cannot change your email.',:input_html => { :class => "span4"} %>
-  <%= f.input :password ,:required => false , :input_html => { :id => "input_password" } %>
-  <%= f.input :password_confirmation,:required => false %>
+  <%= f.input :fullname, :required => false, :input_html => { :class => "span4"} ,:label => "ชื่อ"%>
+  <%= f.input :email, :required => false, :disabled => true, :hint => 'คุณไม่สามารถเปลี่ยนอีเมล์',:input_html => { :class => "span4"} ,:label => "อีเมล์"%>
+  <%= f.input :password ,:required => false , :input_html => { :id => "input_password" } ,:label => "รหัสผ่าน"%>
+  <%= f.input :password_confirmation,:required => false ,:label => "ยืนยันรหัสผ่าน" %>
   <% if signed_in? %>
   <% if current_user.admin? %>
-  <%= f.input :admin %>
+  <%= f.input :admin ,:label => "ผู้ดูแลระบบ"%>
+  <%= f.input :approve ,:label => "อนุมัติ"%>
   <% end %>
   <% end %>
   <div class="form-actions">
-    <input type="submit" class="btn btn-primary" value="Update"/>&nbsp;&nbsp;&nbsp;<a href="/users" class="btn btn-danger" id="button-create">Cancel</a>
+    <input type="submit" class="btn btn-primary" value="แก้ไข"/>&nbsp;&nbsp;&nbsp;<a href="/users" class="btn btn-danger">ยกเลิก</a>
   </div>
 </div>
 <% end %>

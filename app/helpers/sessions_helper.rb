@@ -52,7 +52,7 @@ module SessionsHelper
         store_location
         #redirect_to signin_path, notice: "Please sign in."
         respond_to do |format|
-          format.html { redirect_to signin_path, notice: "Please sign in." }
+          format.html { redirect_to signin_path, notice: t("flash.require") }
           format.json { render json: Hash["message" => "Please sign in."] }
         end
       end

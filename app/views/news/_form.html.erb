@@ -1,21 +1,79 @@
-<div class="fill-form">
+<div class="fill-form input_form">
 <%= simple_nested_form_for(@news, :html => { :multipart => true,:class => 'form-horizontal', :id => "new_news" }) do |f| %>
     <%= f.error_notification %>
-    <%= f.input :title ,:required => false, :input_html => { :class => "span5"}%>
-    <%= f.input :detail,:required => false, :input_html => { :class => "span5"} %>
-    <%= f.input :tag_tokens,:label => "Tag", :input_html => {:class => "span5 tag_token", data: {load: @news.tags}}  %>
-    <%= f.association :province, :collection => Province.all(:order => "province"), :label_method => lambda { |p| "#{p.province}" }, :prompt => "Select your province",:required => false, :input_html => { :class => "span2"} %>
+    <%= f.input :title ,:required => false, :input_html => { :class => "span5"} ,:label => "หัวข้อข่าว"%>
+    <%= f.input :detail,:required => false, :input_html => { :class => "span5"} ,:label => "รายละเอียด"%>
+    <%= f.input :tag_tokens,:label => "Tag", :input_html => {:class => "span5 tag_token", data: {load: @news.tags}} %>
+    <div class="control-group select optional"><label class="select optional control-label" for="news_province_id">จังหวัด</label><div class="controls"><select class="select optional span2" id="news_province_id" name="news[province]"><option value="">เลือกจังหวัด</option><option value="กรุงเทพฯ">กรุงเทพฯ</option>
+<option value="กระบี่">กระบี่</option><option value="กาญจนบุรี">กาญจนบุรี</option>
+<option value="กาฬสินธุ์">กาฬสินธุ์</option><option value="กำแพงเพชร">กำแพงเพชร</option>
+<option value="ขอนแก่น">ขอนแก่น</option><option value="จันทบุรี">จันทบุรี</option>
+<option value="ฉะเชิงเทรา">ฉะเชิงเทรา</option><option value="ชลบุรี">ชลบุรี</option>
+<option value="ชัยนาท">ชัยนาท</option><option value="ชัยภูมิ">ชัยภูมิ</option>
+<option value="ชุมพร">ชุมพร</option><option value="เชียงราย">เชียงราย</option>
+<option value="เชียงใหม่">เชียงใหม่</option><option value="ตรัง">ตรัง</option>
+<option value="ตราด">ตราด</option><option value="ตาก">ตาก</option>
+<option value="นครนายก">นครนายก</option><option value="นครปฐม">นครปฐม</option>
+<option value="นครพนม">นครพนม</option><option value="นครราชสีมา">นครราชสีมา</option>
+<option value="นครศรีธรรมราช">นครศรีธรรมราช</option><option value="นครสวรรค์">นครสวรรค์</option>
+<option value="นนทบุร">นนทบุร</option><option value="นราธิวาส">นราธิวาส</option>
+<option value="น่าน">น่าน</option><option value="บุรีรัมย์">บุรีรัมย์</option>
+<option value="ปทุมธานี">ปทุมธานี</option><option value="ปราจีนบุรี">ปราจีนบุรี</option>
+<option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์</option><option value="ปัตตาน">ปัตตาน</option>
+<option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา</option><option value="พะเยา">พะเยา</option>
+<option value="พังงา">พังงา</option><option value="พัทลุง">พัทลุง</option>
+<option value="พิจิตร">พิจิตร</option><option value="พิษณุโลก">พิษณุโลก</option>
+<option value="เพชรบุรี">เพชรบุรี</option><option value="เพชรบูรณ์">เพชรบูรณ์</option>
+<option value="แพร่">แพร่</option><option value="ภูเก็ต">ภูเก็ต</option>
+<option value="มหาสารคาม">มหาสารคาม</option><option value="มุกดาหาร">มุกดาหาร</option>
+<option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option><option value="ยโสธร">ยโสธร</option>
+<option value="ยะลา">ยะลา</option><option value="ร้อยเอ็ด">ร้อยเอ็ด</option>
+<option value="ระนอง">ระนอง</option><option value="ระยอง">ระยอง</option>
+<option value="ราชบุร">ราชบุร</option><option value="ลพบุร">ลพบุร</option>
+<option value="ลำปาง">ลำปาง</option><option value="ลำพูน">ลำพูน</option>
+<option value="เลย">เลย</option><option value="ศรีสะเกษ">ศรีสะเกษ</option>
+<option value="สกลนคร">สกลนคร</option><option value="สงขลา">สงขลา</option>
+<option value="สตูล">สตูล</option><option value="สมุทรปราการ">สมุทรปราการ</option>
+<option value="สมุทรสงคราม">สมุทรสงคราม</option><option value="สมุทรสาคร">สมุทรสาคร</option>
+<option value="สระแก้ว">สระแก้ว</option><option value="สระบุร">สระบุร</option>
+<option value="สิงห์บุรี">สิงห์บุรี</option><option value="สุโขทัย">สุโขทัย</option>
+<option value="สุพรรณบุรี">สุพรรณบุรี</option><option value="สุราษฎร์ธานี">สุราษฎร์ธานี</option>
+<option value="สุรินทร์">สุรินทร์</option><option value="หนองคาย">หนองคาย</option>
+<option value="หนองบัวลำภู">หนองบัวลำภู</option><option value="อ่างทอง">อ่างทอง</option>
+<option value="อำนาจเจริญ">อำนาจเจริญ</option><option value="อุดรธานี">อุดรธานี</option>
+<option value="อุตรดิตถ์">อุตรดิตถ์</option><option value="อุทัยธานี">อุทัยธานี</option>
+<option value="อุบลราชธานี">อุบลราชธานี</option></select></div></div>
+
+    <div class="control-group string optional"><label class="string optional control-label" for="hotnews_title">คำแนะนำ</label><div class="controls"><input class="string optional span5" id="suggest" name="suggest" size="50" type="text"></div></div>
 
     <%= f.fields_for :attachfiles do |builder| %>
     <div class="form-attachfile">
-      <%= builder.input :file , :input_html => {:class => "form-inline", :id => "new_file"} %>
-      <%= builder.link_to_remove "Remove" %>
+      <%= builder.input :file, :label => "ไฟล์", :input_html => {:class => "form-inline", :id => "new_file"} %>
+      <%= builder.link_to_remove "ลบ" %>
       </div>
     <% end %>
-    <%= f.link_to_add "+ Add File", :attachfiles %>
+    <%= f.link_to_add "+ เพิ่มไฟล์ข่าว", :attachfiles %>
 
   <div class="form-actions">
-    <input type="submit" class="btn btn-primary" value="Create"/>&nbsp;&nbsp;&nbsp;<a href="/news" class="btn btn-danger" id="button-create">Cancel</a>
+    <input type="submit" class="btn btn-primary" value="สร้าง"/>&nbsp;&nbsp;&nbsp;<a href="/news" class="btn btn-danger">ยกเลิก</a>&nbsp;&nbsp;&nbsp;<input type="button" value="แสดงตัวอย่าง" class="btn btn-warning" onclick="displayHTML('Testing',1500,700)">
   </div>
 <% end %>
 </div>
+
+<script type="text/javascript">
+function displayHTML(title,w,h) {
+
+  var title = document.getElementById("news_title").value;
+  var detail = document.getElementById("news_detail").value;
+  var suggest = document.getElementById("suggest").value
+  var left = (screen.width/2)-(w/2);
+  var top = (screen.height/2)-(h/2);
+
+  win = window.open ('',title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+  win.document.write("<b>หัวข้อข่าว : </b>" + title + " ");
+  win.document.write("<br><b>รายละเอียด : </b>" + detail + "");
+  win.document.write("<br><b>คำแนะนำ : </b>" + suggest + "");
+
+}
+
+</script>

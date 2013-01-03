@@ -1,13 +1,13 @@
 <div class="hero-unit">
-<div class="breadcrumb titlebar span3"><h3>EDIT ORGANIZATION</h3></div>
-<div class="fill-form">
+<div class="breadcrumb titlebar span2"><h3>แก้ไขข้อมูลองค์กร</h3></div>
+<div class="fill-form input_form">
 <%= simple_form_for(@organization, :html => { :class => 'form-horizontal', :multipart => true, :id => "new_organization_edit" }) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :name,:required => false, :input_html => { :class => "span5"} %>
-  <%= f.input :logo, :hint => "File JPG JPEG PNG only.", :input_html => { :id => "file-input"}  %>
+  <%= f.input :name,:required => false, :input_html => { :class => "span5"} ,:label => "ชื่อ" %>
+  <%= f.input :logo, :hint => "เฉพาะไฟล์ JPG JPEG PNG เท่านั้น.", :input_html => { :id => "file-input"} ,:label => "สัญลักษณ์" %>
   <div class="preview-image"><div id="result"><p></p></div></div>
   <div class="form-actions">
-    <input type="submit" class="btn btn-primary" value="Update"/>&nbsp;&nbsp;&nbsp;<a href="/organizations" class="btn btn-danger" id="button-create">Cancel</a>
+    <input type="submit" class="btn btn-primary" value="แก้ไข"/>&nbsp;&nbsp;&nbsp;<a href="/organizations" class="btn btn-danger">ยกเลิก</a>
   </div>
 </div>
 <% end %>

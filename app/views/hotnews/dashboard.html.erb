@@ -1,0 +1,83 @@
+<div class="page-header">
+  <% if can? :create, @hotnews %>
+   <div class="button-right"><a href="hotnews/new" class="btn btn" id="button-create"><i class="icon-white icon-plus-sign"></i> สร้างข่าวด่วน</a> </div>
+  <% end %>
+  <div class="alert alert-info header">
+  <h1>หน้าแรก<small></small></h1>
+  </div>
+</div>
+
+<div class="row">
+					<div class="span5 dashboard">
+									
+						<div class="widget widget-table">
+						<div class="widget-header">
+						<i class="icon-th-list"></i>
+						<h3> ข่าวด่วนล่าสุด</h3>
+						<div class="pull-right btn-add" style="opacity:1;"><a href="<%= hotnews_index_path %>" class="btn btn" rel="tooltip" title="แสดงข่าวด่วนทั้งหมด"> 
+                      <i class="icon-search btn-add"></i>            
+            			</a></div>
+						</div>
+																
+						<div class="widget-content">
+						<table class="table table-striped table-bordered">
+				          <thead>
+				          <tr>
+				            <th>#</th>
+				            <th>หัวข้อข่าวด่วน</th>
+				            <th>ไฟล์</th>
+				            <th>วัน เวลาที่สร้าง</th>
+				          </tr>
+				        </thead>
+				        <% @recent_hotnews.each do |r| %>
+				          <tr>
+				            <td><%= r.id %></td>
+				            <td><%= link_to truncate(r.title, :length => 40), r %></td>
+				            <td width="2%"><%= r.attachfile_hotnews.count %></td>
+				            <td width="25%"><%= I18n.l(r.created_at, format: :short) %></td>
+				          </tr>
+				        <% end %>
+				        </table>
+							</div> <!-- /widget-content -->
+							
+						</div> <!-- /widget -->
+						
+					</div> <!-- /span5 -->
+		
+					<div class="span5 dashboard">
+						
+						<div class="widget widget-table">
+							
+						<div class="widget-header">
+						<i class="icon-th-list"></i>
+						<h3> ข่าวล่าสุด</h3>
+						<div class="pull-right btn-add" style="opacity:1;"><a href="<%= news_index_path %>" class="btn btn" rel="tooltip" title="แสดงข่าวทั้งหมfด"> 
+                       <i class="icon-search btn-add"></i>            
+            			</a></div>
+						</div>
+									
+							<div class="widget-content">
+							<table class="table table-striped table-bordered">
+				          <thead>
+				          <tr>
+				            <th>#</th>
+				            <th>หัวข้อข่าว</th>
+				            <th>จังหวัด</th>
+				            <th>วัน เวลาที่สร้าง</th>
+				          </tr>
+				        </thead>
+				        <% @recent_news.each do |r| %>
+				          <tr>
+				            <td><%= r.id %></td>
+				            <td><%= link_to truncate(r.title, :length => 40), r %></td>
+				            <td width="3%"><%= r.province == "" ? "-" : "#{r.province}" %></td>
+				            <td width="25%"><%= I18n.l(r.created_at, format: :short) %></td>
+				          </tr>
+				        <% end %>
+				        </table>
+							</div> <!-- /widget-content -->
+							
+						</div> <!-- /widget -->
+					</div> <!-- /span4 -->
+					
+				</div>

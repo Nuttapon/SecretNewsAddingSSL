@@ -1,17 +1,18 @@
 <div class="page-header">
   <% if can? :create, @hotnews %>
-   <a href="hotnews/new" class="btn btn-primary pull-right" id="button-create"><i class="icon-white icon-plus"></i> Create Hotnews</a>
+   <div class="button-right"><a href="hotnews/new" class="btn btn" id="button-create"><i class="icon-white icon-plus-sign"></i> สร้างข่าวด่วน</a> </div>
   <% end %>
-  <h1>All Hotnews<small></small></h1>
-
+  <div class="alert alert-info header">
+  <h1>ข่าวด่วน<small></small></h1>
+  </div>
 </div>
-<table class="display" id="hotnewss">
+<table class="display" id="dataTable-hotnews">
   <thead>
   <tr>
-    <th>Id</th>
-    <th>Title</th>
-    <th>File</th>
-    <th>Action</th>
+    <th>รหัส</th>
+    <th>หัวข้อข่าว</th>
+    <th>ไฟล์ข่าว</th>
+    <th></th>
   </tr>
   </thead>
     <tbody>
@@ -19,10 +20,23 @@
     <tr>
       <td><%= hotnews.id %></td>
       <td><%= link_to hotnews.title,hotnews_path(hotnews) %></td>
-      <td><%= link_to hotnews.file_file_name, hotnews.file.url %></td>
-      <td><a href="/hotnews/<%= hotnews.id %>" class="btn btn-info" id="button-create"><i class="icon-white icon-zoom-in"></i></a>
-      <a href="<%= edit_hotnews_path(hotnews) %>" class="btn btn-primary" id="button-create"><i class="icon-white icon-edit"></i></a>
-       <a href="/hotnews/<%= hotnews.id %>" data-confirm="Are you sure?" data-method="delete" class="btn btn-danger" id="button-create" alt="Delete"><i class="icon-white icon-trash"></i></a></td>
+      <td  width = "18%">
+      <% unless hotnews.attachfile_hotnews.empty? %>
+            <% hotnews.attachfile_hotnews.each do |attach| %>
+            <% if attach.file_hotnews_content_type.split("/").first == "image" %>
+              <%= link_to image_tag(attach.file_hotnews.url, :height => '30', :width => '30'),attach.file_hotnews.url, :class => "colorbox", :title => "#{attach.file_hotnews_file_name}" , :rel => "tooltip"%>&nbsp;
+              <% elsif attach.file_hotnews_content_type.split("/").first == "video"%>
+              <a href="<%= attach.file_hotnews.url %>" rel="tooltip" title="<%= attach.file_hotnews_file_name %>"><%= image_tag('file-video.png', :height => '30', :width => '30')%></a>&nbsp;
+              <% else %>
+              <a href="<%= attach.file_hotnews.url %>" rel="tooltip" title="<%= attach.file_hotnews_file_name %>"><%= image_tag('pdf-icon.png', :height => '30', :width => '30')%></a>
+              <% end %>
+            <% end %>
+          <% else %>
+          <% end %>
+      </td>
+      <td><a href="/hotnews/<%= hotnews.id %>">แสดง</a>
+      <a href="<%= edit_hotnews_path(hotnews) %>">แก้ไข</a>
+       <a href="/hotnews/<%= hotnews.id %>" data-confirm="ยืนยันหรือไม่ ?" data-method="delete"  alt="Delete">ลบ</a></td>
     </tr>
   <% end %>
   </tbody>

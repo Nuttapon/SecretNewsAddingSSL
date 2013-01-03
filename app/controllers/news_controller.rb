@@ -1,11 +1,12 @@
 class NewsController < ApplicationController
+  force_ssl :except => [:feed, :show]
   # GET /news
   # GET /news.json
-  before_filter :signed_in_user, only: [:edit,:destroy,:new]
+  before_filter :signed_in_user, :except => [:feed, :show]
   before_filter :admin_user, only: [:edit,:destroy]
   
   def index
-    @news = News.all
+    @news = News.order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,8 +19,7 @@ class NewsController < ApplicationController
       @news = News.find(:all, :order => "updated_at DESC")
       respond_to do |format|
           format.html # index.html.erb
-            #format.json { render json: [@news,url_files] }
-          format.json { render json: @news.as_json(:methods => :image)}
+          format.json { render json: @news.as_json(:only => [:title,:detail,:province],:methods => [:created_by,:file_thumbnail,:file_image, :file_pdf, :file_video,:datetime,:comment])}
         end
     else
       respond_to do |format|
@@ -55,6 +55,7 @@ class NewsController < ApplicationController
     end
 
     @reads = Read.where(:news_id => @news.id)
+
     @unreads = User.find(:all, :conditions => ['id not in (?)', Read.where(:news_id => @news.id).map(&:user_id)])
 
     @files = Attachfile.where(:news_id => @news.id)
@@ -85,6 +86,10 @@ class NewsController < ApplicationController
   # GET /news/1/edit
   def edit
     @news = News.find(params[:id])
+    unless Comment.find_by_commentable_id(@news).nil?
+    @value =  Comment.find_by_commentable_id(@news).comment
+    end
+    @edit_new = News.find(params[:id])
   end
 
   # POST /news
@@ -92,10 +97,11 @@ class NewsController < ApplicationController
   def create
     @news = current_user.news.new(params[:news])
     #@news.user_id = current_user.id
-
     respond_to do |format|
       if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
+        sent_notification(1)
+        @news.comments.create(:title => params[:news][:title], :comment => params[:suggest],:user_id => current_user)
+        format.html { redirect_to @news, notice: t("flash.save") }
         format.json { render json: @news, status: :created, location: @news }
       else
         format.html { render action: "new" }
@@ -111,7 +117,8 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.update_attributes(params[:news])
-        format.html { redirect_to @news, notice: 'News was successfully updated.' }
+        Comment.find_or_create_by_commentable_id(params[:id]).update_attributes(:title => params[:news][:title], :comment => params[:suggest], :user_id => current_user, :commentable_type => controller_name.classify)
+        format.html { redirect_to @news, notice: t("flash.save") }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -127,7 +134,7 @@ class NewsController < ApplicationController
     @news.destroy
 
     respond_to do |format|
-      format.html { redirect_to news_index_url }
+      format.html { redirect_to news_index_url, notice: t("flash.delete") }
       format.json { head :no_content }
     end
   end
@@ -139,13 +146,15 @@ class NewsController < ApplicationController
     redirect_to(root_path) unless current_user?(@user)
   end
 
-  def admin_user
-    if current_user.admin?
-      else
-        flash[:warning] = 'Only Admin'
-        redirect_to root_path
-    end
+  def sent_notification(receiver_id)
+    n = APN::GroupNotification.new
+    n.group_id = receiver_id
+    n.device_language = "TH"
+    n.badge = 1
+    n.alert = t("flash.msgnews")
+    n.sound = "1.aiff"
+    n.save!
+    APN::App.find_by_id(1).send_group_notifications
   end
-
 
 end

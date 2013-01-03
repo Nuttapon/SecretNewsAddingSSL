@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Hotnews:</b>
+  <%= @hotnews_read.hotnews %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @hotnews_read.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_hotnews_read_path(@hotnews_read) %> |
+<%= link_to 'Back', hotnews_reads_path %>

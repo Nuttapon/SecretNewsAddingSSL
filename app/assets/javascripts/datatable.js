@@ -4,36 +4,67 @@ $(document).ready(function () {
 var asInitVals = new Array();
 
 $(document).ready(function() {
-    $('#hotnewss').dataTable({
+    $('#dataTable-hotnews').dataTable({
         "bJQueryUI": true,
-        "sScrollY": 300,
+        "sScrollY": 400,
+        "iDisplayLength": 15,
         "sPaginationType": "full_numbers",
-        "aoColumns": [{"sWidth":"4%"},null,{"sWidth":"6%"},{"sWidth":"11.6%"}],
+        "aoColumns": [{"sWidth":"4%"},null,{"sWidth":"6%"},{"sWidth":"12%"}],
         "aoColumnDefs": [{ "bSortable": false, "aTargets": [3] }],
         "oLanguage": {
-			"sLengthMenu": "_MENU_ Records per page",
-			"sSearch": "Search all columns:"
+			"sLengthMenu": "_MENU_ จำนวนข้อมูลต่อหน้า",
+			"sSearch": "ค้นหา:",
+            "sInfo": "กำลังแสดง _START_ ถึง _END_ จาก _TOTAL_ ระเบียน",
+            "sInfoEmpty": "กำลังแสดง 0 ถึง 0 จาก 0 ระเบียน",
+            "sZeroRecords": "ไม่พบข้อมูล",
+            "oPaginate": {
+                "sFirst": "หน้าแรก",
+                "sNext": "หน้าถัดไป",
+                "sLast": "หน้าสุดท้าย",
+                "sPrevious": "หน้าก่อนหน้า"
+            }
 		}
     });
-    $('#datatables-user').dataTable({
+    $('#datatables-users').dataTable({
         "bJQueryUI": true,
+        "sScrollY": 400,
         "sPaginationType": "full_numbers",
-        "aoColumnDefs": [{ "bSortable": false, "aTargets": [4] }],
-        "aoColumns": [null,null,{"sWidth":"6%"},{"sWidth":"12%"},{"sWidth":"11%"}],
+        "aoColumnDefs": [{ "bSortable": false, "aTargets": [5] }],
+        "aoColumns": [null,null,{"sWidth":"3%"},{"sWidth":"6%"},{"sWidth":"12%"},{"sWidth":"11%"}],
         "oLanguage": {
-			"sLengthMenu": "_MENU_ Records per page",
-			"sSearch": "Search all columns:"
-		}
+            "sLengthMenu": "_MENU_ จำนวนข้อมูลต่อหน้า",
+            "sSearch": "ค้นหา:",
+            "sInfo": "กำลังแสดง _START_ ถึง _END_ จาก _TOTAL_ ระเบียน",
+            "sInfoEmpty": "กำลังแสดง 0 ถึง 0 จาก 0 ระเบียน",
+            "sZeroRecords": "ไม่พบข้อมูล",
+            "oPaginate": {
+                "sFirst": "หน้าแรก",
+                "sNext": "หน้าถัดไป",
+                "sLast": "หน้าสุดท้าย",
+                "sPrevious": "หน้าก่อนหน้า"
+            }
+        }
     });
-    $('#datatables-newss').dataTable({
+    $('#datatables-news').dataTable({
         "bJQueryUI": true,
+        "sScrollY": 400,
+        "iDisplayLength": 15,
         "sPaginationType": "full_numbers",
         "aoColumnDefs": [{ "bSortable": false, "aTargets": [6] }],
         "aoColumns": [{"sWidth":"15%"},null,{"sWidth":"10%"},{"sWidth":"16%"},{"sWidth":"10%"},{"sWidth":"12%"},{"sWidth":"11%"}],
         "oLanguage": {
-			"sLengthMenu": "_MENU_ Records per page",
-			"sSearch": "Search all columns:"
-		}
+            "sLengthMenu": "_MENU_ จำนวนข้อมูลต่อหน้า",
+            "sSearch": "ค้นหา:",
+            "sInfo": "กำลังแสดง _START_ ถึง _END_ จาก _TOTAL_ ระเบียน",
+            "sInfoEmpty": "กำลังแสดง 0 ถึง 0 จาก 0 ระเบียน",
+            "sZeroRecords": "ไม่พบข้อมูล",
+            "oPaginate": {
+                "sFirst": "หน้าแรก",
+                "sNext": "หน้าถัดไป",
+                "sLast": "หน้าสุดท้าย",
+                "sPrevious": "หน้าก่อนหน้า"
+            }
+        }
     });
     $('#tagging').dataTable({
         "bJQueryUI": true,
@@ -41,20 +72,60 @@ $(document).ready(function() {
         "aoColumnDefs": [{ "bSortable": false, "aTargets": [5] }],
         "aoColumns": [{"sWidth":"15%"},null,{"sWidth":"10%"},{"sWidth":"16%"},{"sWidth":"12%"},{"sWidth":"11%"}],
         "oLanguage": {
-			"sLengthMenu": "_MENU_ Records per page",
-			"sSearch": "Search all columns:"
-		}
+            "sLengthMenu": "_MENU_ จำนวนข้อมูลต่อหน้า",
+            "sSearch": "ค้นหา:",
+            "sInfo": "กำลังแสดง _START_ ถึง _END_ จาก _TOTAL_ ระเบียน",
+            "sInfoEmpty": "กำลังแสดง 0 ถึง 0 จาก 0 ระเบียน",
+            "sZeroRecords": "ไม่พบข้อมูล",
+            "oPaginate": {
+                "sFirst": "หน้าแรก",
+                "sNext": "หน้าถัดไป",
+                "sLast": "หน้าสุดท้าย",
+                "sPrevious": "หน้าก่อนหน้า"
+            }
+        }
     });
 
-    var oTable = $('#datatables-checkread').dataTable( {
+    var oTable = $('#datatables-checkreads').dataTable( {
 		"bJQueryUI": true,
+        "sScrollY": 200,
+        "iDisplayLength": 10,
         "sPaginationType": "full_numbers",
 		// "aoColumns": [{"sWidth":"15%"},null,{"sWidth":"10%"},{"sWidth":"16%"},{"sWidth":"10%"},{"sWidth":"12%"},{"sWidth":"11%"}],
 		"oLanguage": {
-			"sLengthMenu": "_MENU_ Records per page",
-			"sSearch": "Search all columns:"
-		}
+            "sLengthMenu": "_MENU_ จำนวนข้อมูลต่อหน้า",
+            "sSearch": "ค้นหา:",
+            "sInfo": "กำลังแสดง _START_ ถึง _END_ จาก _TOTAL_ ระเบียน",
+            "sInfoEmpty": "กำลังแสดง 0 ถึง 0 จาก 0 ระเบียน",
+            "sZeroRecords": "ไม่พบข้อมูล",
+            "oPaginate": {
+                "sFirst": "หน้าแรก",
+                "sNext": "หน้าถัดไป",
+                "sLast": "หน้าสุดท้าย",
+                "sPrevious": "หน้าก่อนหน้า"
+            }
+        }
 	} );
+    var oTables = $('#datatables-checkunreads').dataTable( {
+        "bJQueryUI": true,
+        "sScrollY": 200,
+        "iDisplayLength": 10,
+        "sPaginationType": "full_numbers",
+        // "aoColumns": [{"sWidth":"15%"},null,{"sWidth":"10%"},{"sWidth":"16%"},{"sWidth":"10%"},{"sWidth":"12%"},{"sWidth":"11%"}],
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ จำนวนข้อมูลต่อหน้า",
+            "sSearch": "ค้นหา:",
+            "sInfo": "กำลังแสดง _START_ ถึง _END_ จาก _TOTAL_ ระเบียน",
+            "sInfoEmpty": "กำลังแสดง 0 ถึง 0 จาก 0 ระเบียน",
+            "sZeroRecords": "ไม่พบข้อมูล",
+            "oPaginate": {
+                "sFirst": "หน้าแรก",
+                "sNext": "หน้าถัดไป",
+                "sLast": "หน้าสุดท้าย",
+                "sPrevious": "หน้าก่อนหน้า"
+            }
+        }
+    } );
 	$("tfoot input").keyup( function () {
 					/* Filter on the column (the index) of this element */
 					oTable.fnFilter( this.value, $("tfoot input").index(this) );
@@ -79,7 +150,6 @@ $(document).ready(function() {
 						this.value = asInitVals[$("tfoot input").index(this)];
 					}
 	} );
-
 } );
 
 $(document).ready(function() {
@@ -108,3 +178,4 @@ $(document).ready(function() {
         .on('drop', load);
     $('#file-input').on('change', load);
 });
+

@@ -1,9 +1,17 @@
 <div class="page-header">
-  <h1>Detail of Organization <small>show detail</small></h1>
+  <!-- <a href="organizations/new" class="btn btn-primary pull-right" id="button-create"><i class="icon-white icon-plus"></i> Create Organization</a> -->
+  <h1>ข้อมูลองค์กร<small></small></h1>
 </div>
-<blockquote><p>Name : <%= @organization.name %></p></blockquote>
-<blockquote><p>Logo : <%= link_to image_tag(@organization.logo.url(:small)), @organization.logo.url , :class => "colorbox", :title => "#{ @organization.name }"%></p></blockquote>
+<center><%= link_to image_tag(@organization.logo.url(:medium)), @organization.logo.url , :class => "colorbox", :title => "#{ @organization.name }"%></center>
+<blockquote><p>ชื่อองค์กร : <%= @organization.name %></p></blockquote>
+
+
+<!-- <blockquote><p>วิสัยทัศน์ : อยู่ระหว่างปรับปรุง </p></blockquote>
+<blockquote><p>พันธกิจ : อยู่ระหว่างปรับปรุง </p></blockquote> -->
+
 <div class="form-actions">
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+<%= link_to 'แก้ไข', edit_organization_path(@organization) %> |
+<%= link_to 'กลับ', organizations_path %>
 </div>
+
+<br />

@@ -1,23 +1,25 @@
 class PasswordResetsController < ApplicationController
+  force_ssl
   #layout "resetpassword"
   def new
   end
   
   def create
 	user = User.find_by_email(params[:email])
-	if user
-	user.send_password_reset
-	respond_to do |format|
-	format.html { redirect_to signin_path , :notice => "Email sent with password reset instructions." }
-	format.json { render :text => "Email sent with password reset instructions."}
-	end
-	else
-	respond_to do |format|
-	flash[:warning] = "Email #{params[:email]} wasn't found.  Perhaps you used a different one?  Or never registered or something?"
-	format.html { redirect_to new_password_reset_path}
-  format.json { render :text => "Email wasn't found.'"}
-		end
-	end
+    respond_to do |format|
+    	if user
+      @new_password = user.reset_password
+      puts @new_password
+      UserMailer.password_reset(user,@new_password).deliver
+
+    	   format.html { redirect_to signin_path , :notice => t("flash.sentemail") + " #{params[:email]}" }
+    	   format.json { render :text => "Email sent with password reset instructions."}
+    	else
+      	flash[:warning] = "Email #{params[:email]} " + t("flash.email")
+      	format.html { redirect_to new_password_reset_path}
+        format.json { render :text => "Email wasn't found.'"}
+    	end
+    end
   end
   
   def edit
@@ -43,4 +45,5 @@ class PasswordResetsController < ApplicationController
   end
   
 
+  
 end

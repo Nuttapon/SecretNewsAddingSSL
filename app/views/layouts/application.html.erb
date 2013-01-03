@@ -1,145 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SecretNews</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <title>สำนักงานข่าวกรองแห่งชาติ</title>
+  <%= stylesheet_link_tag "application","http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" ,:media => "all" %>
   <%= javascript_include_tag "application" %>
-  <script type="text/javascript">
-  	$(document).ready(function(){
-    	var validator = $("#new_hotnews").validate({
-    		success: "valid",
-    		rules: {
-    			"hotnews[title]": {required: true, minlength: 10},
-    			"hotnews[file]": {required: true, accept: "pdf"}
-    		},
-    		messages: {
-    			"hotnews[title]": {
-            required: "Title can't blank.",
-            minlength: "Enter at least {0} characters."},
-          "hotnews[file]": { required: "File can't blank.", accept: "File pdf only." }
-    		}
-    	});
-    	var validator = $("#new_hotnews_edit").validate({
-    		success: "valid",
-    		rules: {
-    			"hotnews[title]": {required: true, minlength: 10},
-    			"hotnews[file]": { accept: "pdf" }
-    		},
-    		messages: {
-    			"hotnews[title]": {
-            required: "Title can't blank.",
-            minlength: "Enter at least {0} characters."},
-          	"hotnews[file]": { accept: "File pdf only." }
-    		}
-    	});
-    	var validator = $("#signup_user").validate({
-    		success: "valid",
-    		rules: {
-    			"user[fullname]": {required: true },
-    			"user[email]": { required: true, email: true, remote:"/users/check_email"},
-    			"user[password]": {required: true, minlength: 6 },
-    			"user[password_confirmation]": { equalTo: "#input_password" }
-    		},
-    		messages: {
-    			"user[fullname]": { required: "Fullname can't blank." },
-          		"user[email]": { required: "Please enter a  valid email address.", remote: jQuery.format("{0} is already in use.") },
-          		"user[password]": {required: "Password can't blank." , minlength: "Minimum is {0} characters."},
-          		"user[password_confirmation]": { required: "Password confirmation can't blank.", equalTo: "No match your password."}
-    		}
-    	});
-    	var validator = $("#signup_user_edit").validate({
-    		success: "valid",
-    		rules: {
-    			"user[fullname]": {required: true },
-    			// "user[email]": { required: true, email: true, remote:"/users/check_email"},
-    			"user[password]": { minlength: 6 },
-    			"user[password_confirmation]": { equalTo: "#input_password" }
-    		},
-    		messages: {
-    			"user[fullname]": { required: "Fullname can't blank." },
-          		// "user[email]": { required: "Please enter a  valid email address.", remote: jQuery.format("{0} is already in use.") },
-          		"user[password]": { minlength: "Minimum is {0} characters."},
-          		"user[password_confirmation]": { required: "Password confirmation can't blank.", equalTo: "No match your password."}
-    		}
-    	});
-    	var validator = $("#new_organization").validate({
-    		success: "valid",
-    		rules: {
-    			"organization[name]": {required: true },
-    			"organization[logo]": {required: true, accept: "jpg|jpeg|png" }
-    		},
-    		messages: {
-    			"organization[name]": { required: "Name can't blank." },
-          		"organization[logo]": { required: "Logo can't blank.", accept: "File JPG,JPEG,PNG only." }
-    		}
-    	});
-    	var validator = $("#new_organization_edit").validate({
-    		success: "valid",
-    		rules: {
-    			"organization[name]": {required: true },
-    			"organization[logo]": {accept: "jpg|jpeg|png" }
-    		},
-    		messages: {
-    			"organization[name]": { required: "Name can't blank." },
-          		"organization[logo]": { accept: "File JPG,JPEG,PNG only." }
-    		}
-    	});
-    	var validator = $("#new_news").validate({
-    		success: "valid",
-    		rules: {
-    			"news[title]": {required: true },
-    			"news[detail]": {required: true },
-    			"news[province_id]": {required: true}
-    		},
-    		messages: {
-    			"news[title]": { required: "Title can't blank." },
-          		"news[detail]": { required: "Detail can't blank." },
-          		"news[province_id]": {required: "Province can't blank."}
-    		}
-    	});
-    	var validator = $("#new_news_edit").validate({
-    		success: "valid",
-    		rules: {
-    			"news[title]": {required: true },
-    			"news[detail]": {required: true },
-    			"news[province_id]": {required: true}
-    		},
-    		messages: {
-    			"news[title]": { required: "Title can't blank." },
-          		"news[detail]": { required: "Detail can't blank." },
-          		"news[province_id]": {required: "Province can't blank."}
-    		}
-    	});
-  });
-  </script>
-    <style type="text/css">
-  	label.error{
-  		background: url("/assets/unchecked.gif") no-repeat 0px 0px;
-  		padding-left: 17px;
-  		margin-left: 20px;
-  		font-weight: bold;
-  		color: #EA5200;
-  		display: inline;
-  	}
-  	label.valid {
-  		background: url("/assets/checked.gif") no-repeat 0px 0px;
-  		color: black;
-  		padding-left: 17px;
-  	}
-  </style>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <%= render 'layouts/header' %>
+<div class="wraper-contrainer">
+
 	<div class="container">
-	      <% flash.each do |key, value| %>
-	        <div class="alert alert-<%= key %>"><%= value %></div>
-	      <% end %>
-	<%= yield %>
+	    <div class="row">
+      <div class="span2">
+      <div class="system">
+        <% if signed_in? %>
+        <div class="login_btn_v1"><span class="welcome1">ยินดีต้อนรับ</span> : <%= current_user.fullname %><br>
+        <div class="setting">
+        <a href="<%= edit_user_path(current_user) %>" class="btn btn-small login">ตั้งค่า</a>
+        <a href="<%= signout_path %>" class="btn btn-small login">ออกจากระบบ</a>
+        </div>
+        </div>
+        <% else %>
+        <div class="login_btn"><i class="icon-lock"></i> เข้าสู่ระบบ<br>
+        <a href="<%= signin_path%>" class="btn btn-small login">Login</a>
+        </div>
+        <% end %>
+      </div>
+    <div id="menu">
+    <ul>
+    <li><a href="<%= root_path %>">หน้าแรก</a></li>
+    <li><a href="<%= hotnews_index_path %>">ข่าวด่วน</a></li>
+    <li><a href="<%= news_index_path %>">ข่าวทั่วไป</a></li>
+    <li><a href="<%= users_path %>">สมาขิก</a></li>
+    <li><a href="<%= organizations_path%>">ข้อมูลทั่วไป</a></li>
+<!--     <li><a href="#">อื่นๆ</a></li> -->
+    </ul>
+    </div>
+      </div>
+      <div class="span10">
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>" style="width:93.8%;margin-top:-7px;"><%= value %></div>
+        <% end %>
+          <%= yield %>
+      </div>
+    </div>
 	</div>
-<footer class="container">
-<p>&copy; Code App 2012</p>
-</footer
+</di>
+<footer class="container footer">
+<span class="footer">&copy; Code App 2012</span>
+</footer>
+
 </body>
 </html>

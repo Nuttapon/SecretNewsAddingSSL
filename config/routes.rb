@@ -1,5 +1,7 @@
 SecretNews::Application.routes.draw do
 
+  resources :hotnews_reads
+
   get 'users/check_email'
   get "hotnews/hotnews_feed"
   # get "tags/index"
@@ -19,14 +21,15 @@ SecretNews::Application.routes.draw do
 
   resources :titles
 
-  resources :users
+  resources :users 
+
 
   resources :password_resets
 
   resources :sessions, only: [:new,:create,:destroy]
 
-  root :to => 'hotnews#index'
-
+  root :to => 'hotnews#dashboard'
+  match '/dashboard', to: 'hotnews#dashboard'
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy' #, via: :delete

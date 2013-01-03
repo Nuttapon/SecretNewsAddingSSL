@@ -1,11 +1,65 @@
-<div class="fill-form">
-<%= simple_form_for(@hotnews, :html => { :class => 'form-horizontal', :multipart => true , :id => "new_hotnews"}) do |f| %>
+<div class="fill-form input_form">
+<%= simple_nested_form_for(@hotnews, :html => { :multipart => true,:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :title,:required => false, :input_html => { :class => "span5"} %>
-  <%= f.input :file, :hint => "File pdf only."%>
+  <%= f.input :title,:required => false, :input_html => { :class => "span5"} ,:label => "หัวข้อข่าว"%>
+  <div class="control-group string optional"><label class="string optional control-label" for="hotnews_title">คำแนะนำ</label><div class="controls"><input class="string optional span5" id="suggest" name="suggest" size="100" type="text"></div></div>
+
+  <%= f.fields_for :attachfile_hotnews do |builder| %>
+    <div class="form-attachfile">
+      <%= builder.input :file_hotnews, :label => "ไฟล์" , :input_html => {:class => "form-inline", :id => "new_file"} %>
+      <%= builder.link_to_remove "ลบ" %>
+      </div>
+    <% end %>
+    <%= f.link_to_add "+ เพิ่มไฟล์", :attachfile_hotnews %>
+
+
+    <!-- Button to trigger modal -->
+<!--   <a href="#myModal" role="button" class="btn" data-toggle="modal" onclick="addElement();">Launch demo modal</a> -->
+   
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Modal header</h3>
+    </div>
+    <div class="modal-body">
+    <div id="myDiv"><input class="title-preview" id="title-preview" type="text"></input></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary" type="submit">Save changes</button>
+    </div>
+  </div>
+
   <div class="form-actions">
-    <input type="submit" class="btn btn-primary" value="Create"/>&nbsp;&nbsp;&nbsp;<a href="/hotnews" class="btn btn-danger" id="button-create">Cancel</a>
+    <input type="submit" class="btn btn-primary" value="สร้าง"/>&nbsp;&nbsp;&nbsp;<a href="/hotnews" class="btn btn-danger">ยกเลิก</a>&nbsp;&nbsp;&nbsp;<input type="button" value="แสดงตัวอย่าง" class="btn btn-warning" onclick="displayHTML('Testing',1500,700)">
   </div>
 </div>
-<% end %>
+<% end %> 
+
+
+<script type="text/javascript">
+function displayHTML(title,w,h) {
+
+  var title = document.getElementById("hotnews_title").value;
+  var suggest = document.getElementById("suggest").value
+  var left = (screen.width/2)-(w/2);
+  var top = (screen.height/2)-(h/2);
+
+  win = window.open ('',title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+  win.document.write("<b>หัวข้อข่าว : </b>" + title + " ");
+  win.document.write("<br><b>คำแนะนำ : </b>" + suggest + "");
+
+}
+
+</script>
+
+<input type="hidden" value="0" id="theValue" />
+<script type="text/javascript">
+function addElement() {
+  var title = document.getElementById("hotnews_title").value;
+  var suggest = document.getElementById("suggest").value
+  document.getElementById("title-preview").value = title;
+}
+
+</script>
